@@ -1,36 +1,47 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createAppContainer, NavigationContainer } from '@react-navigation/native'
+import firebase from 'firebase'
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+import LogIn from './src/modules/LogIn/containers/LogIn'
+import SignUp from './src/modules/SignUp/containers/SignUp'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  );
+const Stack = createStackNavigator()
+
+export default class App extends Component{
+
+    componentWillMount(){
+        try{
+            var firebaseConfig = {
+                apiKey: "AIzaSyBPJCeRbGaHNzBWSv38AOlBZgFI5CRc49w",
+                authDomain: "clubtime-9d0cb.firebaseapp.com",
+                databaseURL: "https://clubtime-9d0cb.firebaseio.com",
+                projectId: "clubtime-9d0cb",
+                storageBucket: "clubtime-9d0cb.appspot.com",
+                messagingSenderId: "1079668349268",
+                appId: "1:1079668349268:web:d62cc535192510908e50c1",
+                measurementId: "G-ZRJYFEF71T"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        } catch(err) {
+            if (!/already exists/.test(err.message)) {
+                console.error('Firebase initialization error', err.stack)
+            }
+        }
+
+          console.log(firebase)
+    }
+
+    render(){
+        return(
+            <NavigationContainer>
+                <Stack.Navigator headerMode= 'none'>
+                    <Stack.Screen name="LogIn" component={LogIn} />
+                    <Stack.Screen name="SignUp" component={SignUp} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
