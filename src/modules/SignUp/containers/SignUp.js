@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import { 
   StyleSheet, 
-  Text, View , 
+  Text, 
+  View , 
   ImageBackground, 
   Dimensions, 
   Image, 
   TextInput,
   TouchableOpacity
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 var styles = require('../components/styles')
 
@@ -20,8 +22,11 @@ export default class App extends Component{
             <View >
                 <ImageBackground source={require('../components/images/fondoencabezado.png')} style={styles.Encabezado}>
                     <Image source={require('../components/images/logogrande.png')} style={styles.Logo} />
-
                 </ImageBackground>
+
+                <ScrollView style={styles.Cuerpo}>
+
+                </ScrollView>
             </View>
         )
     }

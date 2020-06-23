@@ -24,7 +24,9 @@ export default class App extends Component{
             };
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
+            console.log('Hasta aqui todo bienx1')
             firebase.analytics();
+            console.log('Hasta aqui todo bienx2')
         } catch(err) {
             if (!/already exists/.test(err.message)) {
                 console.error('Firebase initialization error', err.stack)
