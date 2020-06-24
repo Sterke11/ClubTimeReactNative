@@ -12,6 +12,8 @@
     "@react-navigation/native": "^5.5.1",
     "@react-navigation/stack": "^5.5.1",
     "android": "0.0.8",
+    "css-select": "^2.1.0",
+    "css-tree": "^1.0.0-alpha.39",
     "expo": "~37.0.3",
     "expo-splash-screen": "^0.2.3",
     "expo-updates": "~0.2.0",
@@ -23,6 +25,8 @@
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.2.0",
+    "react-native-shadow": "^1.2.2",
+    "react-native-svg": "^12.1.0",
     "react-native-unimodules": "~0.9.0",
     "react-native-web": "~0.11.7"
   },

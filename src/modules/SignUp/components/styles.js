@@ -26,10 +26,11 @@ module.exports = StyleSheet.create({
       alignSelf: "flex-end"
     },
     Letra: {
-      fontSize: 20,
-      color: "#FFFFFF",
+      fontSize: 18,
+      color: "#0091BF",
       marginStart: 70,
       fontFamily: "roboto",
+      fontWeight: "bold",
     },
     EditBox: {
       marginStart: 70,
@@ -40,17 +41,27 @@ module.exports = StyleSheet.create({
       fontSize: 20,
       fontWeight: "bold",
     }, 
-    Flecha: {
+    SubTitulo: {
       alignSelf: "center",
-      width: width*.15,
-      height: height*.07
+      fontSize: 40,
+      color: "#03A9F4",
+      fontFamily: "roboto",
+      fontWeight: "bold",
     },
+    Boton: {
+      borderRadius: 15,
+      height: 40,
+      color: "#0091BF",
+      fontSize: 20,
+      fontWeight: "bold", 
+      justifyContent: "center", 
+      backgroundColor: "#49AAC9",
+    }, 
     Registrar: {
       alignSelf: "center",
       fontFamily: "roboto",
       color: "#FFFFFF",
       fontSize: 20,
       fontWeight: "bold",
-      textDecorationLine: "underline",
     }
   });
