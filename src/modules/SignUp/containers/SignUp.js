@@ -10,12 +10,12 @@ import {
     TouchableOpacity,
     ToastAndroid
 } from 'react-native';
+import FireBase from '../../../clases/DB/FireBase'
+import NetInfo from '@react-native-community/netinfo'
 import { ScrollView } from 'react-native-gesture-handler';
 import { BoxShadow } from 'react-native-shadow'
-import FireBase from '../../../clases/DB/FireBase'
 
 var styles = require('../components/styles')
-
 var width = Dimensions.get('window').width
 var height = Dimensions.get('window').height
 
@@ -103,44 +103,57 @@ export default class App extends Component{
             //             "\nEmail: " + this.state.Email +
             //             "\nPassword: " + this.state.Pass
             // )
-            setTimeout(() => {
-                FireBase.database().ref("Usuario/" + this.state.Boleta).once("value", (data) =>{
-                    if(!data.exists()){
-                        FireBase.database().ref("Usuario/" + this.state.Boleta).set({
-                            Nombre: this.state.Nombre,
-                            ApPaterno: this.state.ApPaterno,
-                            ApMaterno: this.state.ApMaterno,
-                            Boleta: this.state.Boleta,
-                            Email: this.state.Email,
-                            Password: this.state.Pass,
-                        }).then(() => {
-                            ToastAndroid.showWithGravity(
-                                "¡Registro Exitoso!",
-                                ToastAndroid.LONG,
-                                ToastAndroid.CENTER
-                            )
-                            this.props.navigation.navigate('LogIn')
-                        }).catch((error) => {
-                            ToastAndroid.showWithGravity(
-                                "¡Ocurrio un error inesperado!",
-                                ToastAndroid.LONG,
-                                ToastAndroid.CENTER
-                            )
-                            console.error("Error al insertar: " + error)
-                        })
-                    }
-                    else {
+            NetInfo.fetch().then(state => {
+                if(state.isConnected) {
+                    this.SignUp();
+                }
+                else{
+                    ToastAndroid.showWithGravity(
+                        "No hay conexión a internet",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                    )
+                }
+            })                
+        }
+    }
+    SignUp(){
+        setTimeout(() => {
+            FireBase.database().ref("Usuario/" + this.state.Boleta).once("value", (data) =>{
+                if(!data.exists()){
+                    FireBase.database().ref("Usuario/" + this.state.Boleta).set({
+                        Nombre: this.state.Nombre,
+                        ApPaterno: this.state.ApPaterno,
+                        ApMaterno: this.state.ApMaterno,
+                        Boleta: this.state.Boleta,
+                        Email: this.state.Email,
+                        Password: this.state.Pass,
+                    }).then(() => {
                         ToastAndroid.showWithGravity(
-                            "Ya existe un usuario con ese numero de boleta",
+                            "¡Registro Exitoso!",
                             ToastAndroid.LONG,
                             ToastAndroid.CENTER
                         )
-                    }
-                })
-            }, 3000)
-        }
+                        this.props.navigation.navigate('LogIn')
+                    }).catch((error) => {
+                        ToastAndroid.showWithGravity(
+                            "¡Ocurrio un error inesperado!",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                        )
+                        console.error("Error al insertar: " + error)
+                    })
+                }
+                else {
+                    ToastAndroid.showWithGravity(
+                        "Ya existe un usuario con ese numero de boleta",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                    )
+                }
+            })
+        }, 3000)
     }
-
     render(){
         return(
             <View style={styles.Todo}>
