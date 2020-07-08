@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import FireBase from '../../../clases/DB/FireBase'
 import NetInfo from '@react-native-community/netinfo'
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler'
 import { BoxShadow } from 'react-native-shadow'
 
 var styles = require('../components/styles')
@@ -157,8 +157,8 @@ export default class App extends Component{
     render(){
         return(
             <View style={styles.Todo}>
-                <ImageBackground source={require('../components/images/fondoencabezado.png')} style={styles.Encabezado}>
-                    <Image source={require('../components/images/logogrande.png')} style={styles.Logo} />
+                <ImageBackground source={require('../../../images/fondoencabezado.png')} style={styles.Encabezado}>
+                    <Image source={require('../../../images/logogrande.png')} style={styles.Logo} />
                 </ImageBackground>
 
                 <ScrollView style={styles.Cuerpo}>

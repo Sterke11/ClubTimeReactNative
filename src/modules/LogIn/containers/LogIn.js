@@ -56,6 +56,7 @@ export default class App extends Component{
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      this.props.navigation.navigate('AppContent')
     }
   }
   handlePressSignUp(){
@@ -66,9 +67,9 @@ export default class App extends Component{
     return (
       <View style={styles.Todo}>
         <View style={styles.Encabezado}>
-          <Image source={require('../components/images/logogrande.png')} style={styles.Logo} />
+          <Image source={require('../../../images/logogrande.png')} style={styles.Logo} />
         </View>
-        <ImageBackground source={require('../components/images/fondogrande.png')} style={styles.Cuerpo}>
+        <ImageBackground source={require('../../../images/fondogrande.png')} style={styles.Cuerpo}>
 
           <View style={{height: height*.23}} />
 
@@ -104,7 +105,7 @@ export default class App extends Component{
           <TouchableOpacity onPress={()=>this.handlePressFlecha()}>
             <Image 
               style={styles.Flecha} 
-              source={require('../components/images/flechablancader.png')} 
+              source={require('../../../images/flechablancader.png')} 
             />
           </TouchableOpacity>
 
